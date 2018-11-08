@@ -52,9 +52,9 @@ class Dog
   end
 
   def self.create(name:, breed:)
-    dog = self.new
-    dog.name = name
-    dog.breed = breed
+    dog = self.new(name, breed)
+    # dog.name = name
+    # dog.breed = breed
     dog.save
     dog
   end
