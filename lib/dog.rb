@@ -45,10 +45,10 @@ class Dog
     sql = "SELECT * FROM dogs WHERE name = ? LIMIT 1;"
     DB[:conn].execute(sql, name).map { |row| self.new_from_db(row) }.first
   end
-
-  def self.create(name:, breed:)
-    dog = self.new(namd: name, breed: breed)
-    dog.save
-    dog
-  end
+  # 
+  # def self.create(name:, breed:)
+  #   dog = self.new(namd: name, breed: breed)
+  #   dog.save
+  #   dog
+  # end
 end
