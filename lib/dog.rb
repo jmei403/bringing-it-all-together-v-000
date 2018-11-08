@@ -51,11 +51,10 @@ class Dog
     DB[:conn].execute(sql, name).map { |row| self.new_from_db(row) }.first
   end
 
-  def self.create(hash)
+  def self.create(name:, breed:)
     dog = self.new
-    hash.each do |key, value|
-      dog.key = value
-    end
+    dog.name = name
+    dog.breed = breed
     dog.save
     dog
   end
