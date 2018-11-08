@@ -36,6 +36,12 @@ class Dog
     self
   end
 
+  def self.create(name:, breed:)
+    dog = self.new(name: name, breed: breed)
+    dog.save
+    dog
+  end
+
   def self.new_from_db(row)
     new_dog = self.new(id: row[0], name: row[1], breed: row[2])
     new_dog
@@ -51,9 +57,11 @@ class Dog
     DB[:conn].execute(sql, name).map { |row| self.new_from_db(row) }.first
   end
 
-  def self.create(name:, breed:)
-    dog = self.new(name: name, breed: breed)
-    dog.save
-    dog
-  end
+  def self.find_by_id(id)
+    sql = <<-SQL
+    SELECT * FROM dogs
+    WHERE id = ?
+    SQL
+
+    DB[:conn].execute(sql, id).map { |row| self.new_from_db(row) }.first
 end
