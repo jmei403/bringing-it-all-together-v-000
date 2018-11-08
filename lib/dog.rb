@@ -55,7 +55,7 @@ class Dog
     dog = self.new
     hash.each do |key, value|
       dog.key = value
-    end 
+    end
     dog.save
     dog
   end
